@@ -1,0 +1,101 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ResourceDestinationPath>..\..\ResourceGeneration.Droid\Resources\values</ResourceDestinationPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">16.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <TransformOnBuild>true</TransformOnBuild>
+    <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
+    <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\Colors.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Colors.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Dimensions.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Dimensions.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ViewsIdentifiers.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ViewsIdentifiers.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Colors.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Colors.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Dimensions.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Dimensions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ViewsIdentifiers.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ViewsIdentifiers.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Templates\StringsTemplate.tt">
+      <OutputFilePath>$(ResourceDestinationPath)</OutputFilePath>
+      <OutputFileName>strings.xml</OutputFileName>
+      <LastGenOutput>StringsTemplate.xml</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="Templates\AppColorsTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <OutputFilePath>$(ResourceDestinationPath)</OutputFilePath>
+      <OutputFileName>colors.xml</OutputFileName>
+      <LastGenOutput>AppColorsTemplate.xml</LastGenOutput>
+    </None>
+    <None Update="Templates\DimensionsTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <OutputFilePath>$(ResourceDestinationPath)</OutputFilePath>
+      <OutputFileName>dimensions.xml</OutputFileName>
+      <LastGenOutput>DimensionsTemplate.xml</LastGenOutput>
+    </None>
+    <None Update="Templates\_BaseTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>_BaseTemplate.xml</LastGenOutput>
+    </None>
+    <None Update="Templates\_BaseTemplate.xml">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>_BaseTemplate.tt</DependentUpon>
+    </None>
+    <None Update="Templates\ViewIdentifiersTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <OutputFilePath>$(ResourceDestinationPath)</OutputFilePath>
+      <OutputFileName>view_identifiers.xml</OutputFileName>
+      <LastGenOutput>ViewIdentifiersTemplate.xml</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+  <Import Project="$(VSToolsPath)\TextTemplating\Microsoft.TextTemplating.targets" />
+
+</Project>

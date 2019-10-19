@@ -1,0 +1,9 @@
+﻿<#@ include file="_BaseTemplate.tt" once="true" #> 
+<resources>
+<# 
+	string resxRelativePath = @"..\Resources\Dimensions.resx";
+	string resourceAttributeName = "dimen";
+
+	GenerateResourceFile(resxRelativePath, resourceAttributeName, "dp");
+#>
+</resources>

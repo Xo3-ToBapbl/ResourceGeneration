@@ -1,0 +1,9 @@
+﻿<#@ include file="_BaseTemplate.tt" once="true" #> 
+<resources>
+<# 
+	string resxRelativePath = @"..\Resources\ViewsIdentifiers.resx";
+	string resourceAttributeName = "string";
+
+	GenerateResourceFile(resxRelativePath, resourceAttributeName);
+#>
+</resources>
